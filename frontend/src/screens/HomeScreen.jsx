@@ -5,12 +5,7 @@ import ZeldaCardScreen from './ZeldaCardScreen';
 const HomeScreen = () => {
   return (
     <div>
-      <div>
         <Hero />
-      </div>
-      <div>
-        <ZeldaCardScreen />
-      </div>
     </div>
   )
 }

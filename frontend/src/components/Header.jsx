@@ -44,6 +44,11 @@ const Header = () => {
                       Profile
                     </NavDropdown.Item>
                   </LinkContainer>
+                  <LinkContainer to='/games'>
+                    <NavDropdown.Item>
+                      Games
+                    </NavDropdown.Item>
+                  </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>
