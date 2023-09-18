@@ -1,5 +1,5 @@
 import React, { useState, useEffect }from 'react';
-import { Container, Button} from 'react-bootstrap';
+import { Container, Button, Row, Col} from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios'
 import { toast } from 'react-toastify';
@@ -27,26 +27,29 @@ const ZeldaCardScreen = () => {
   }, [isLoading])
 
   return (
-    <div>
+    <Container>
       {isLoading ? (
         <>
           <Loader />
           <p>Help</p>
         </>
       ) : (
-        <div>
-          {zeldaGames.data.length > 0 && zeldaGames.data.map(( game) => 
-            <Card key={game.id} style={{height: '300px', width: '300px'}}>
-              <Card.Body>
-                <Card.Title>{game.name}</Card.Title>
-                <Card.Text>{game.description}</Card.Text>
-              </Card.Body>
-            </Card>
-          )}
-        </div>
+        <Row xs={1} md={2} lg={3} className='g-4'>
+          {zeldaGames.data.map((game) => (
+            <Col key={game.id}>
+              <Card style={{ height: '300px', width: '300px', padding: '10px' }} className='overflow-auto'>
+                <Card.Body style={{ height: '300px', width: '300px' }}>
+                  <Card.Title>{game.name}</Card.Title>
+                  <Card.Text>{game.description}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
       )}
-    </div>
+    </Container>
   );
-}
+};
+
 
 export default ZeldaCardScreen
