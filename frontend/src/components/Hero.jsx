@@ -5,13 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux/";
 import { toast } from 'react-toastify'
 
-
-
 const Hero = () => {
 
   const navigate = useNavigate();
 
   const { userInfo } = useSelector((state) => state.auth);
+  
   //TODO DISABLE THIS SHIT WHEN LOGGED IN 
 
   const checkLoggedIn = () => {
@@ -20,6 +19,15 @@ const Hero = () => {
       navigate('/profile')
     } else { 
       navigate('/login')
+    }
+  }
+
+  const checkRegister = () => {
+    if (userInfo) {
+      toast.error("You are already logged in. This is not your fault, this is the shitty developer's for letting you see this while logged in.")
+      navigate('/profile')
+    } else { 
+      navigate('/register')
     }
   }
 
@@ -32,16 +40,12 @@ const Hero = () => {
             This is now a Zelda API app that I'll routinely update. 
           </p>
           <div className="d-flex">
-            <LinkContainer to='/login'>
               <Button variant="primary"  className="me-3" onClick={checkLoggedIn}>
                 Sign In
               </Button>
-            </LinkContainer>
-            <LinkContainer to='/register'>
-              <Button variant="secondary" onClick={checkLoggedIn}>
+              <Button variant="secondary" onClick={checkRegister}>
               Register
               </Button>
-            </LinkContainer>
           </div>
         </Card>
       </Container>
