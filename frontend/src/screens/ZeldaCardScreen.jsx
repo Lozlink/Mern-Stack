@@ -13,12 +13,12 @@ const ZeldaCardScreen = () => {
   const retrieveGames = async () => {
     try {
       await axios.get('https://zelda.fanapis.com/api/games')
-      .then(res => setZeldaGames(res.data))
-      setIsLoading(false)
-      console.log(zeldaGames.data)
+        .then(res => setZeldaGames(res.data));
+        setIsLoading(false);
+        console.log(zeldaGames.data);
     } catch (error) {
-      toast.error(err?.data?.message || error.error)
-      setIsLoading(false)
+      toast.error(err?.data?.message || error.error);
+      setIsLoading(false);
     }
   };
 
@@ -37,8 +37,8 @@ const ZeldaCardScreen = () => {
         <Row xs={1} md={2} lg={3} className='g-4'>
           {zeldaGames.data.map((game) => (
             <Col key={game.id}>
-              <Card style={{ height: '300px', width: '300px', padding: '10px' }} className='overflow-auto'>
-                <Card.Body style={{ height: '300px', width: '300px' }}>
+              <Card style={{ height: '300px', width: '400px', padding: '10px', textAlign: 'center'}} className='overflow-auto'>
+                <Card.Body >
                   <Card.Title>{game.name}</Card.Title>
                   <Card.Text>{game.description}</Card.Text>
                 </Card.Body>

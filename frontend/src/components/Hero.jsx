@@ -1,9 +1,28 @@
 import { Container, Card, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux/";
+import { toast } from 'react-toastify'
+
+
 
 const Hero = () => {
+
+  const navigate = useNavigate();
+
+  const { userInfo } = useSelector((state) => state.auth);
+  //TODO DISABLE THIS SHIT WHEN LOGGED IN 
+
+  const checkLoggedIn = () => {
+    if (userInfo) {
+      toast.error("You are already logged in. This is not your fault, this is the shitty developer's for letting you see this while logged in.")
+      navigate('/profile')
+    } else { 
+      navigate('/login')
+    }
+  }
+
   return (
     <div className=" py-5">
       <Container className="d-flex justify-content-center">
@@ -14,12 +33,12 @@ const Hero = () => {
           </p>
           <div className="d-flex">
             <LinkContainer to='/login'>
-              <Button variant="primary"  className="me-3">
+              <Button variant="primary"  className="me-3" onClick={checkLoggedIn}>
                 Sign In
               </Button>
             </LinkContainer>
             <LinkContainer to='/register'>
-              <Button variant="secondary">
+              <Button variant="secondary" onClick={checkLoggedIn}>
               Register
               </Button>
             </LinkContainer>
